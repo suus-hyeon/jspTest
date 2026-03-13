@@ -41,7 +41,7 @@
   </context-param>
   <context-param>
   	<param-name>homeAddress</param-name>
-  	<param-value>http://192.168.50.20:9090/springGreen/</param-value>
+  	<param-value>http://192.168.50.61:9090/springGreen/</param-value>
   </context-param>
   
 	<!-- Filter 처리 -->
