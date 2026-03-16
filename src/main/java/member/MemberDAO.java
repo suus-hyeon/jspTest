@@ -147,7 +147,7 @@ public class MemberDAO {
 	// 방문포인트 10 증가처리
 	public void setMemberPointPlus(String mid) {
 		try {
-			sql = "update member set point = point + 10, lastDate=now() where mid = ?";
+			sql = "update member set point = point + 10 where mid = ? and todayCnt <= 3";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mid);
 			pstmt.executeUpdate();
@@ -301,6 +301,56 @@ public class MemberDAO {
 			res = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("SQL문 오류(setMemberPwdCheckRes) : " + e.getMessage());
+		} finally {
+			pstmtClose();
+		}
+		return res;
+	}
+
+	// 방문 카운트 증가처리 후, 포인트 자동 증가하기
+	public void setTodayCntCheck(String mid) {
+		try {
+			sql = "update member set todayCnt = if(date(lastDate)=curdate(), todayCnt+1, 1), lastDate=now() where mid = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			pstmt.executeUpdate();
+			pstmtClose();
+			
+			sql = "update member set point = point + 10 where mid = ? and todayCnt <= 3";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mid);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL문 오류(setMemberPwdCheckRes) : " + e.getMessage());
+		} finally {
+			pstmtClose();
+		}
+		
+	}
+
+	public int setMemberUpdateOk(MemberVO vo) {
+		int res = 0;
+		try {
+			sql = "update member set nickName=?,name=?,gender=?,birthday=?,tel=?,"
+					+ "address=?,email=?,homePage=?,job=?,hobby=?,photo=?,content=?,userInfor=? where mid = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getNickName());
+			pstmt.setString(2, vo.getName());
+			pstmt.setString(3, vo.getGender());
+			pstmt.setString(4, vo.getBirthday());
+			pstmt.setString(5, vo.getTel());
+			pstmt.setString(6, vo.getAddress());
+			pstmt.setString(7, vo.getEmail());
+			pstmt.setString(8, vo.getHomePage());
+			pstmt.setString(9, vo.getJob());
+			pstmt.setString(10, vo.getHobby());
+			pstmt.setString(11, vo.getPhoto());
+			pstmt.setString(12, vo.getContent());
+			pstmt.setString(13, vo.getUserInfor());
+			pstmt.setString(14, vo.getMid());
+			res = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL문 오류(setMemberUpdateOk) : " + e.getMessage());
 		} finally {
 			pstmtClose();
 		}

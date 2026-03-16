@@ -63,7 +63,11 @@ public class MemberLoginOkCommand implements MemberInterface {
 		
 		// 기타 처리(1.로그인시 10포인트씩 지급(단, ), 2.최종방문일처리, 3.자동등업처리)
 		//1. 10포인트씩 지급(단, 1일 3회까지만 방문포인트 10씩 증가.), 2.최종 방문일 처리
-		dao.setMemberPointPlus(mid);
+		
+		// 방문카운트(todayCnt) 증가(오늘 첫 방문은 1증가, 오늘 2번째 이상은 기존 방문카운트+1)
+		dao.setTodayCntCheck(mid);
+		
+//		dao.setMemberPointPlus(mid);
 		
 		
 		//2. 자동 정회원 등업시키기

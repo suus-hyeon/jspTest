@@ -88,6 +88,16 @@ public class MemberController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "/include/message";
 		}
+		else if(com.equals("MemberUpdate")) {
+			command = new MemberUpdateCommand();
+			command.execute(request, response);
+			viewPage += "memberUpdate";
+		}
+		else if(com.equals("MemberUpdateOk")) {
+			command = new MemberUpdateOkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message";
+		}
 		viewPage += ".jsp";
 		
 		request.getRequestDispatcher(viewPage).forward(request, response);

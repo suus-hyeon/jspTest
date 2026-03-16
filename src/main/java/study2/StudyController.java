@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import guest.GuestInterface;
 import study2.ajax.AjaxCheck1Command;
 import study2.ajax.AjaxCheck2Command;
+import study2.fileUpload.FileDownLoadCommand;
+import study2.fileUpload.FileUpload1OkCommand;
 import study2.modal.ModalFormOkCommand;
 import study2.password.PasswordCheckCommand;
 
@@ -62,6 +64,22 @@ public class StudyController extends HttpServlet {
 			command = new ModalFormOkCommand();
 			command.execute(request, response);
 			viewPage += "modal/modalForm";
+		}
+		else if(com.equals("FileUploadForm")) {
+			viewPage += "fileUpload/fileUploadForm";
+		}
+		else if(com.equals("FileUpload1")) {
+			viewPage += "fileUpload/fileUpload1";
+		}
+		else if(com.equals("FileUpload1Ok")) {
+			command = new FileUpload1OkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message";
+		}
+		else if(com.equals("FileDownLoad")) {
+			command = new FileDownLoadCommand();
+			command.execute(request, response);
+			viewPage += "fileUpload/fileDownLoad";
 		}
 		viewPage += ".jsp";
 		
