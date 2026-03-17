@@ -83,6 +83,7 @@
 				      <c:if test="${sLevel != 1}"><li><a class="dropdown-item" href="MemberList.mem">회원리스트</a></li></c:if>
 				      <li><a class="dropdown-item" href="MemberPwdCheck.mem">비밀번호수정</a></li>
 				      <li><a class="dropdown-item" href="MemberPwdCheck.mem?flag=m">회원정보수정</a></li>
+				      <li><a class="dropdown-item" href="MemberUpdate2.mem?flag=m">회원정보수정2(연습)</a></li>
 				      <li><a class="dropdown-item" href="javascript:memberDeleteCheck()">회원탈퇴</a></li>
 				      <c:if test="${sLevel == 0}"><li><a class="dropdown-item" href="AdminMain.ad">관리자메뉴</a></li></c:if> 
 						</ul>

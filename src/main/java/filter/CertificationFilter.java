@@ -28,7 +28,7 @@ public class CertificationFilter implements Filter {
 		String uri = req.getRequestURI();
 		
 		
-		if(!uri.contains("/") && !uri.contains("/guest/*") && !uri.contains("/login/*") && !uri.contains("/study/*")) {
+		if(!uri.contains("/") && !uri.contains("/guest/*") && !uri.contains("/login/*") && !uri.contains("/study/*") && !uri.contains("/images/")) {
 			if(!uri.contains("/css/") && !uri.contains("/js/")) {
 				request.setCharacterEncoding("utf-8");
 				response.setContentType("text/html; charset=utf-8");

@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import guest.GuestInterface;
 import study2.ajax.AjaxCheck1Command;
 import study2.ajax.AjaxCheck2Command;
+import study2.fileUpload.FileDeleteCommand;
 import study2.fileUpload.FileDownLoadCommand;
 import study2.fileUpload.FileUpload1OkCommand;
+import study2.fileUpload.FileUpload2OkCommand;
+import study2.fileUpload.FileUpload3OkCommand;
+import study2.fileUpload.FileUpload4OkCommand;
 import study2.modal.ModalFormOkCommand;
 import study2.password.PasswordCheckCommand;
 
@@ -71,8 +75,32 @@ public class StudyController extends HttpServlet {
 		else if(com.equals("FileUpload1")) {
 			viewPage += "fileUpload/fileUpload1";
 		}
+		else if(com.equals("FileUpload2")) {
+			viewPage += "fileUpload/fileUpload2";
+		}
+		else if(com.equals("FileUpload3")) {
+			viewPage += "fileUpload/fileUpload3";
+		}
+		else if(com.equals("FileUpload4")) {
+			viewPage += "fileUpload/fileUpload4";
+		}
 		else if(com.equals("FileUpload1Ok")) {
 			command = new FileUpload1OkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message";
+		}
+		else if(com.equals("FileUpload2Ok")) {
+			command = new FileUpload2OkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message";
+		}
+		else if(com.equals("FileUpload3Ok")) {
+			command = new FileUpload3OkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message";
+		}
+		else if(com.equals("FileUpload4Ok")) {
+			command = new FileUpload4OkCommand();
 			command.execute(request, response);
 			viewPage = "/include/message";
 		}
@@ -80,6 +108,11 @@ public class StudyController extends HttpServlet {
 			command = new FileDownLoadCommand();
 			command.execute(request, response);
 			viewPage += "fileUpload/fileDownLoad";
+		}
+		else if(com.equals("FileDelete")) {
+			command = new FileDeleteCommand();
+			command.execute(request, response);
+			return;
 		}
 		viewPage += ".jsp";
 		
